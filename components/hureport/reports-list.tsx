@@ -75,36 +75,37 @@ export function ReportsList({ communityId }: ReportsListProps) {
             key={report.id}
             className="rounded-lg border border-[#E5E7EB] bg-white transition-shadow duration-150 ease-out hover:shadow-sm"
           >
-            {/* Report Header Row */}
+            {/* Report Header Row - 3 Column Grid */}
             <button
               onClick={() => toggleExpand(report.id)}
-              className="flex w-full items-center justify-between p-4 text-left"
+              className="grid w-full grid-cols-[auto_1fr_auto] items-center gap-3 p-3 text-left"
             >
-              <div className="flex flex-1 items-center gap-4">
-                <div className="flex flex-col">
-                  <span className="text-sm font-semibold text-[#111827]">
-                    {t("ticketPrefix", language)}-{report.ticketNumber}
-                  </span>
-                  <span className="text-xs text-[#6B7280]">
-                    {report.createdAt.toLocaleDateString()}
-                  </span>
-                </div>
-                
-                <div className="hidden flex-1 sm:block">
-                  <p className="truncate text-sm text-[#374151]">
-                    {report.summary || report.description.slice(0, 50) + "..."}
-                  </p>
-                  <p className="text-xs text-[#6B7280]">
-                    {getModuleLabel(report.module, language)}
-                  </p>
-                </div>
+              {/* Column 1: Ticket number + date (stacked) */}
+              <div className="flex flex-col min-w-[70px]">
+                <span className="text-xs font-semibold text-[#111827]">
+                  {t("ticketPrefix", language)}-{report.ticketNumber}
+                </span>
+                <span className="text-xs text-[#6B7280]">
+                  {report.createdAt.toLocaleDateString()}
+                </span>
+              </div>
+              
+              {/* Column 2: Summary + module */}
+              <div className="min-w-0 overflow-hidden">
+                <p className="truncate text-sm text-[#374151]">
+                  {report.summary || report.description.slice(0, 50) + "..."}
+                </p>
+                <p className="truncate text-xs text-[#6B7280]">
+                  {getModuleLabel(report.module, language)}
+                </p>
               </div>
 
-              <div className="flex items-center gap-3">
+              {/* Column 3: Status pill + chevron */}
+              <div className="flex items-center gap-2 flex-shrink-0">
                 <Badge
                   variant="secondary"
                   className={cn(
-                    "text-xs font-medium",
+                    "whitespace-nowrap text-xs font-medium",
                     statusConfig[report.status].bg,
                     statusConfig[report.status].color
                   )}
@@ -112,24 +113,16 @@ export function ReportsList({ communityId }: ReportsListProps) {
                   {getStatusLabel(report.status, language)}
                 </Badge>
                 {expandedId === report.id ? (
-                  <ChevronUp className="h-4 w-4 text-[#6B7280]" />
+                  <ChevronUp className="h-4 w-4 text-[#6B7280] flex-shrink-0" />
                 ) : (
-                  <ChevronDown className="h-4 w-4 text-[#6B7280]" />
+                  <ChevronDown className="h-4 w-4 text-[#6B7280] flex-shrink-0" />
                 )}
               </div>
             </button>
 
             {/* Expanded Content */}
             {expandedId === report.id && (
-              <div className="border-t border-[#E5E7EB] px-4 pb-4 pt-3">
-                {/* Mobile-only module info */}
-                <div className="mb-3 sm:hidden">
-                  <div className="flex items-center gap-2 text-xs text-[#6B7280]">
-                    <Layers className="h-3 w-3" />
-                    {getModuleLabel(report.module, language)}
-                  </div>
-                </div>
-
+              <div className="border-t border-[#E5E7EB] px-3 pb-3 pt-3">
                 {/* Description */}
                 <div className="mb-4">
                   <p className="text-sm leading-relaxed text-[#374151]">{report.description}</p>
@@ -157,12 +150,12 @@ export function ReportsList({ communityId }: ReportsListProps) {
                       {report.evidence.map((file) => (
                         <div
                           key={file.id}
-                          className="flex h-16 w-16 items-center justify-center rounded-lg border border-[#E5E7EB] bg-[#F9FAFB]"
+                          className="flex h-14 w-14 items-center justify-center rounded-lg border border-[#E5E7EB] bg-[#F9FAFB]"
                         >
                           {file.type === "image" ? (
-                            <Image className="h-6 w-6 text-[#9CA3AF]" />
+                            <Image className="h-5 w-5 text-[#9CA3AF]" />
                           ) : (
-                            <Film className="h-6 w-6 text-[#9CA3AF]" />
+                            <Film className="h-5 w-5 text-[#9CA3AF]" />
                           )}
                         </div>
                       ))}

@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Building2, MapPin, User, Hash, X } from "lucide-react";
+import { Building2, X } from "lucide-react";
 import { searchClients, getClientById } from "@/lib/hureport/mock-data";
 import { useLanguage } from "@/lib/hureport/language-context";
 import { t } from "@/lib/hureport/translations";
@@ -78,7 +77,6 @@ export function CommunitySearch({ value, onChange }: CommunitySearchProps) {
                   <Building2 className="h-4 w-4 text-[#6B7280]" />
                   <div>
                     <p className="font-medium text-[#111827]">{client.name}</p>
-                    <p className="text-xs text-[#6B7280]">{client.instanceId}</p>
                   </div>
                 </button>
               ))}
@@ -86,35 +84,17 @@ export function CommunitySearch({ value, onChange }: CommunitySearchProps) {
           )}
         </>
       ) : (
-        <div className="rounded-lg border border-[#DBEAFE] bg-[#EFF6FF] p-4">
-          <div className="mb-3 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Building2 className="h-4 w-4 text-[#2563EB]" />
-              <span className="font-semibold text-[#111827]">{selectedClient.name}</span>
-            </div>
+        <div className="flex items-center gap-2">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#F3F4F6] px-3 py-1.5 text-sm text-[#374151]">
+            {selectedClient.name}
             <button
               type="button"
               onClick={handleClear}
-              className="rounded-full p-1 transition-colors duration-150 ease-out hover:bg-[#DBEAFE]"
+              className="ml-1 rounded-full p-0.5 transition-colors duration-150 ease-out hover:bg-[#E5E7EB]"
             >
-              <X className="h-4 w-4 text-[#6B7280]" />
+              <X className="h-3 w-3 text-[#6B7280]" />
             </button>
-          </div>
-          
-          <div className="flex flex-wrap gap-2">
-            <Badge variant="secondary" className="gap-1.5 border-0 bg-white text-[#374151]">
-              <Hash className="h-3 w-3" />
-              {t("instanceId", language)}: {selectedClient.instanceId}
-            </Badge>
-            <Badge variant="secondary" className="gap-1.5 border-0 bg-white text-[#374151]">
-              <MapPin className="h-3 w-3" />
-              {t("country", language)}: {selectedClient.country}
-            </Badge>
-            <Badge variant="secondary" className="gap-1.5 border-0 bg-white text-[#374151]">
-              <User className="h-3 w-3" />
-              {t("cxOwner", language)}: {selectedClient.cxOwner}
-            </Badge>
-          </div>
+          </span>
         </div>
       )}
     </div>

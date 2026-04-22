@@ -15,25 +15,26 @@ function LanguageToggle() {
   const { language, setLanguage } = useLanguage();
 
   return (
-    <div className="flex items-center gap-0.5 rounded-full border border-[#E5E7EB] bg-[#F3F4F6] p-0.5">
+    <div className="flex items-center text-xs">
       <button
         onClick={() => setLanguage("en")}
         className={cn(
-          "rounded-full px-2.5 py-1 text-xs font-medium transition-colors duration-150 ease-out",
+          "transition-colors duration-150 ease-out",
           language === "en"
-            ? "bg-[#2563EB] text-white"
-            : "text-[#6B7280] hover:text-[#374151]"
+            ? "font-semibold text-[#2563EB]"
+            : "font-normal text-[#6B7280] hover:text-[#374151]"
         )}
       >
         EN
       </button>
+      <span className="mx-1.5 text-[#D1D5DB]">|</span>
       <button
         onClick={() => setLanguage("es")}
         className={cn(
-          "rounded-full px-2.5 py-1 text-xs font-medium transition-colors duration-150 ease-out",
+          "transition-colors duration-150 ease-out",
           language === "es"
-            ? "bg-[#2563EB] text-white"
-            : "text-[#6B7280] hover:text-[#374151]"
+            ? "font-semibold text-[#2563EB]"
+            : "font-normal text-[#6B7280] hover:text-[#374151]"
         )}
       >
         ES
