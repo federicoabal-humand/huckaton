@@ -1,15 +1,8 @@
-"use client";
-
-import { HuReportWidget } from "@/components/hureport/hureport-widget";
-
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#F9FAFB]">
-      <div className="p-4">
-        <p className="text-sm font-medium text-[#6B7280]">HuReport AI — Demo preview</p>
-        <p className="text-xs text-[#9CA3AF]">Click the button in the top-right to open the widget.</p>
-      </div>
-      <HuReportWidget />
+    <div style={{ padding: 40 }}>
+      <h1>Hello World - HuReport AI</h1>
+      <p>If you see this, routing works.</p>
     </div>
   );
 }
