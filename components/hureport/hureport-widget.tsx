@@ -125,7 +125,7 @@ export function HuReportWidget() {
         className="fixed right-4 top-4 z-50 flex h-9 items-center gap-2 rounded-full bg-[#2563EB] px-4 font-medium text-white shadow-sm transition-colors duration-150 ease-out hover:bg-[#1D4ED8]"
       >
         <AlertCircle className="h-4 w-4" />
-        <span className="text-sm">HuReport</span>
+        <span className="text-sm">Reportar problema</span>
       </button>
 
       {/* Sheet Panel */}
